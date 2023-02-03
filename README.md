@@ -1,33 +1,44 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-## Steps to install Nestjs
+
+## Steps to install Nestjs 
+
 ```bash
 # install nestjs
 ```
+
 ## Installation
 
 ```bash
 $ npm install
 ```
-## Initial setup
-Install necessary npm dependency packages 
 
-```bash 
+## Initial setup
+
+Install necessary npm dependency packages
+
+```bash
 $ yarn install
 ```
 
 Setup database
+
 1. create db
-```bash 
+
+```bash
 $ yarn seq db:create
 ```
+
 2. run migration
-```bash 
+
+```bash
 $ yarn seq db:migrate
 ```
+
 3. run seed
-```bash 
+
+```bash
 $ yarn seq db:seed
 ```
 
@@ -56,7 +67,9 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
 ## Raw Migration Commands
+
 ```bash
 # create db
 $ npx sequelize-cli db:create
@@ -95,6 +108,7 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
 npx sequelize-cli db:seed:undo:all
 
 ```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
