@@ -8,10 +8,10 @@ import {
   Put,
   UseInterceptors,
 } from '@nestjs/common';
-import { User } from './interfaces/user.interface';
-import { SignupUserDTO } from './dto/sign-up_users.dto';
+import { UserDto } from './dto/user.dto';
 import { UserService } from './users.service';
 import { ResponseTransformInterceptor } from 'src/commons/interceptor/response_transform.interceptor';
+import { User } from './user.entity';
 
 @Controller('users')
 @UseInterceptors(ResponseTransformInterceptor)
@@ -28,17 +28,17 @@ export class UsersController {
   }
 
   @Post('/sign_up')
-  signupUser(@Body() user: SignupUserDTO) {
+  async signupUser(@Body() user: User) {
     return this.userService.signupUser(user);
   }
 
   @Put('/:id')
-  updateUser(@Body() signupUserDTO: SignupUserDTO) {
-    return signupUserDTO;
+  async updateUser(@Body() user: UserDto) {
+    return user;
   }
 
   @Delete('/:id')
-  deleteUser(@Body() signupUserDTO: SignupUserDTO) {
-    return signupUserDTO;
+  deleteUser(@Body() user: object) {
+    return user;
   }
 }
