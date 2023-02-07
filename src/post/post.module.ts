@@ -8,6 +8,7 @@ import { UserModule } from 'src/users/users.module';
 @Module({
   imports:[UserModule],
   controllers: [PostController],
-  providers: [PostService,...postProviders]
+  providers: [PostService,...postProviders],
+  exports:[PostService]
 })
 export class PostModule {}
