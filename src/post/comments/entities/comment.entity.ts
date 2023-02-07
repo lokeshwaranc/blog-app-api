@@ -1,4 +1,4 @@
-import { Post } from "../../post/entities/post.entity";
+import { Post } from "../../entities/post.entity";
 
 import { Column, DataType, ForeignKey,BelongsTo, Table ,Model} from "sequelize-typescript";
 import { User } from "src/users/user.entity";

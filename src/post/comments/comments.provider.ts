@@ -1,5 +1,5 @@
 import { Comment } from '../comments/entities/comment.entity';
-import { COMMENT_REPOSITORY } from '../commons/constants';
+import { COMMENT_REPOSITORY } from '../../commons/constants';
 
 export const commentProvider = [
   {

@@ -5,7 +5,7 @@ import { UserService } from 'src/users/users.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
-import { Comment  } from '../comments/entities/comment.entity';
+import { Comment  } from './comments/entities/comment.entity';
 @Injectable()
 export class PostService {
 
