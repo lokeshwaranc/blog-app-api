@@ -1,5 +1,5 @@
 import { Post } from '../post/entities/post.entity';
-import { Comment } from '../comments/entities/comment.entity';
+import { Comment } from '../post/comments/entities/comment.entity';
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
 
 @Table

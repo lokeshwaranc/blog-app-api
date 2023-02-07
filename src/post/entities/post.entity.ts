@@ -1,5 +1,5 @@
 import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
-import { Comment } from "src/comments/entities/comment.entity";
+import { Comment } from "../comments/entities/comment.entity";
 import { User } from "src/users/user.entity";
 import internal from "stream";
 
