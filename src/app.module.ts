@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './db/database.module';
 import { UserModule } from './users/users.module';
 import { PostModule } from './post/post.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PostModule } from './post/post.module';
     DatabaseModule,
     UserModule,
     PostModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

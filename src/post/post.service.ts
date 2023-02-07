@@ -5,7 +5,7 @@ import { UserService } from 'src/users/users.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
-
+import { Comment  } from '../comments/entities/comment.entity';
 @Injectable()
 export class PostService {
 
@@ -16,7 +16,21 @@ export class PostService {
 
 
   async postExist(id:number):Promise<Post>{
-    let post = await this.postRepository.findByPk(id);
+    let post = await this.postRepository.findByPk(id,{
+      include:[
+        {
+          model:User,
+          as:"postUser",
+          attributes:[
+            'firstName'
+          ]
+        },
+        {
+          model:Comment,
+          as:"Comments"
+        }
+      ]
+    });
     if(post == null){
       throw new HttpException('Post does not exist', HttpStatus.NOT_FOUND);
     }
