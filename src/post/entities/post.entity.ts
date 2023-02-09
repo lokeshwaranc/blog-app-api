@@ -2,6 +2,7 @@ import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, HasMany, Model, Tab
 import { Comment } from "../comments/entities/comment.entity";
 import { User } from "src/users/user.entity";
 import internal from "stream";
+import { PostEmotion } from "../post_emotions/entities/post_emotion.entity";
 
 @Table(
     {
@@ -35,6 +36,9 @@ export class Post extends Model<Post>{
 
       @HasMany(()=>Comment)
       Comments:Comment[]
+
+      @HasMany(()=>PostEmotion)
+      postEmotion:PostEmotion[]
 
 
 }

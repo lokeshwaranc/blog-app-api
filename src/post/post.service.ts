@@ -1,11 +1,13 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { POST_REPOSITORY, USER_REPOSITORY } from 'src/commons/constants';
+import { forwardRef, HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {  POST_REPOSITORY, USER_REPOSITORY } from 'src/commons/constants';
 import { User } from 'src/users/user.entity';
 import { UserService } from 'src/users/users.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
 import { Comment  } from './comments/entities/comment.entity';
+import { PostEmotion } from './post_emotions/entities/post_emotion.entity';
+import sequelize from 'sequelize';
 @Injectable()
 export class PostService {
 
@@ -28,12 +30,18 @@ export class PostService {
         {
           model:Comment,
           as:"Comments"
+        },
+        {
+          model:PostEmotion,
+          as:"postEmotion"
         }
-      ]
+      ],
     });
+   
+    
     if(post == null){
       throw new HttpException('Post does not exist', HttpStatus.NOT_FOUND);
-    }
+    }    
     return post;
   }
 
@@ -43,8 +51,8 @@ export class PostService {
     return post;
   }
 
-  async findOne(id: number) :Promise<Post>{
-    return  await this.postExist(id);
+  async findOne(id: number) :Promise<any>{
+    return await this.postExist(id);
   }
 
   async update(updatePostDto: UpdatePostDto) {

@@ -1,11 +1,7 @@
 import { IsNotEmpty, IsString, MinLength } from "class-validator";
 import { IsEmail } from "sequelize-typescript";
 
-export class UserDto {
-
-   @IsString()
-   @IsNotEmpty()
-   firstName: string;
+export class UserLoginDto {
 
    @IsString()
    @IsNotEmpty()
@@ -14,14 +10,4 @@ export class UserDto {
    @IsString()
    @IsNotEmpty()
    password: string;
-
-
-   @IsString()
-   @IsNotEmpty()
-   lastName:string;
-
-   @IsString()
-   @IsNotEmpty()
-   @MinLength(10)
-   phoneNumber: string;
 }

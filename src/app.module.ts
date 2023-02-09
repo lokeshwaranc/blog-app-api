@@ -7,6 +7,7 @@ import { UserModule } from './users/users.module';
 import { PostModule } from './post/post.module';
 import { CommentsModule } from './post/comments/comments.module';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -14,6 +15,7 @@ import { CommentsModule } from './post/comments/comments.module';
     UserModule,
     PostModule,
     CommentsModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

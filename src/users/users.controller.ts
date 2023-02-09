@@ -12,6 +12,7 @@ import { UserDto } from './dto/user.dto';
 import { UserService } from './users.service';
 import { ResponseTransformInterceptor } from 'src/commons/interceptor/response_transform.interceptor';
 import { User } from './user.entity';
+import { UserLoginDto } from './dto/UserLogin.dto';
 
 @Controller('users')
 @UseInterceptors(ResponseTransformInterceptor)
@@ -28,13 +29,13 @@ export class UsersController {
   }
 
   @Post('/sign_up')
-  async signupUser(@Body() user: User) {
+  async signupUser(@Body() user: UserDto) {
     return this.userService.signupUser(user);
   }
 
-  @Put('/:id')
-  async updateUser(@Body() user: UserDto) {
-    return user;
+  @Post('/sign_in')
+  async signinUser(@Body() user: UserLoginDto) {
+    return this.userService.signInUser(user);
   }
 
   @Delete('/:id')
