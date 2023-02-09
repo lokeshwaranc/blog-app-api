@@ -14,9 +14,5 @@ export class PostEmotionsController {
     return this.postEmotionsService.create(createPostEmotionDto);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostEmotionDto: UpdatePostEmotionDto) {
-    return this.postEmotionsService.update(+id, updatePostEmotionDto);
-  }
 
 }

@@ -2,17 +2,17 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { USER_REPOSITORY } from 'src/commons/constants';
-import * as bcrypt from 'bcrypt';
 import * as dotenv from 'dotenv';
 import { UserLoginDto } from './dto/UserLogin.dto';
 dotenv.config();
 import { JwtService } from '@nestjs/jwt';
+import { JwtActionsService } from './jwt.service';
 @Injectable()
 export class UserService {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly usersRepository: typeof User,
-    private jwtService: JwtService
+    private jwtActionsService:JwtActionsService
   ) {}
   private readonly users: User[] = [];
 
@@ -34,8 +34,7 @@ export class UserService {
   }
 
   async signupUser(user: UserDto): Promise<User> {
-    const saltOrRounds = await bcrypt.genSalt();
-    user.password = await bcrypt.hash(user.password, saltOrRounds);
+    user.password = await this.jwtActionsService.hashPassword(user.password);
     return await this.usersRepository.create(user);
   }
 
@@ -47,8 +46,6 @@ export class UserService {
 
   async signInUser(user:UserLoginDto): Promise<string>{
     const userData =  await this.getUserByEmail(user.email);
-    const isMatch = await bcrypt.compare(user.password, userData.password);
-    if(!isMatch) throw new HttpException('Wrong Password', HttpStatus.NOT_FOUND);
-    return this.jwtService.sign({email:userData.email},{secret:process.env.SECRET})
+    return this.jwtActionsService.generateJwt(user,userData);
   }
 }
